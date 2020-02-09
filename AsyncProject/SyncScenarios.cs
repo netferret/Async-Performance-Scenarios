@@ -7,6 +7,11 @@ namespace AsyncProject
 {
     public sealed class SyncScenarios : IDisposable
     {
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
         public (bool, long) TestStringSync()
         {
             Console.WriteLine("Task on thread {0}", Thread.CurrentThread.ManagedThreadId);
@@ -32,5 +37,4 @@ namespace AsyncProject
             }
         }
     }
-}
 }
