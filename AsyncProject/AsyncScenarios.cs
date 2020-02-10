@@ -8,6 +8,10 @@ namespace AsyncProject
 {
     public sealed class AsyncScenarios : IDisposable
     {
+        public void Dispose()
+        {
+        }
+
         public async Task<(bool, long)> TestStringAsync()
         {
             Console.WriteLine("Task on thread {0}", Thread.CurrentThread.ManagedThreadId);
@@ -19,15 +23,19 @@ namespace AsyncProject
 
             using (var client = new HttpClient())
             {
-                client.Timeout = new TimeSpan(0, 0, 1);
-                var response = client.GetAsync("https://swapi.co/api/people/" + result.ToString());
+                client.Timeout = new TimeSpan(0, 0, 5);
+                var response = await client.GetAsync("https://swapi.co/api/people/" + result.ToString());
 
-                if (response.Result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     stopwatch.Stop();
                     return (true, stopwatch.ElapsedMilliseconds);
                 }
-                else { return (false, stopwatch.ElapsedMilliseconds); }
+                else
+                {
+                    stopwatch.Stop();
+                    return (false, stopwatch.ElapsedMilliseconds);
+                }
             }
 
         }

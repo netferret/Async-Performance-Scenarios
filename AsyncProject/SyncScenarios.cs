@@ -9,7 +9,6 @@ namespace AsyncProject
     {
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public (bool, long) TestStringSync()
@@ -24,7 +23,7 @@ namespace AsyncProject
 
             using (var client = new HttpClient())
             {
-                client.Timeout = new TimeSpan(0, 0, 1);
+                client.Timeout = new TimeSpan(0, 0, 5);
                 // Ok this uses async, but it should wait for the result.
                 var response = client.GetAsync("https://swapi.co/api/people/" + result.ToString());
 
@@ -33,7 +32,11 @@ namespace AsyncProject
                     stopwatch.Stop();
                     return (true, stopwatch.ElapsedMilliseconds);
                 }
-                else { return (false, stopwatch.ElapsedMilliseconds); }
+                else
+                {
+                    stopwatch.Stop();
+                    return (false, stopwatch.ElapsedMilliseconds);
+                }
             }
         }
     }
