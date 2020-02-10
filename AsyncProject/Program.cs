@@ -35,7 +35,7 @@ namespace AsyncProject
                 WriteLine($"Task 4 - Passed? {result4.Result.Item1} - Took {result4.Result.Item2} ms ");
 
                 ForegroundColor = ConsoleColor.Green;
-                WriteLine($"ASYNC with Tasks - Completed in {stopwatch.ElapsedMilliseconds} ms" + Environment.NewLine);
+                WriteLine($"ASYNC with Tasks - Completed in {stopwatch.ElapsedMilliseconds} ms {Environment.NewLine}");
                 ResetColor();
             }
 
@@ -59,7 +59,7 @@ namespace AsyncProject
                 WriteLine($"Task 4 - Passed? {result4.Item1} - Took {result4.Item2} ms ");
 
                 ForegroundColor = ConsoleColor.Green;
-                WriteLine($"ASYNC without Tasks - Completed in {stopwatch.ElapsedMilliseconds} ms" + Environment.NewLine);
+                WriteLine($"ASYNC without Tasks - Completed in {stopwatch.ElapsedMilliseconds} ms {Environment.NewLine}" );
                 ResetColor();
             }
 
