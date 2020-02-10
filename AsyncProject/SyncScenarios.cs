@@ -18,6 +18,7 @@ namespace AsyncProject
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            // Randomise Result 
             var dt = new Random();
             var result = dt.Next(1, 10);
 
