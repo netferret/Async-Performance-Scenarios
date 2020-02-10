@@ -88,11 +88,9 @@ namespace AsyncProject
                 foreach (Task task in tasks)
                 {
                     //var result = task.IsCompleted;
-                    var result = task.GetType().GetProperty("Result").GetValue(task);
-                    var item1 = (((bool, long))result).Item1;
-                    var item2 = (((bool, long))result).Item2;
+                    var result = ((bool, long))task.GetType().GetProperty("Result").GetValue(task);
                     
-                    WriteLine($"Task 1 - Passed? {item1} - Took {item2} ms ");
+                    WriteLine($"Task 1 - Passed? {result.Item1} - Took {result.Item2} ms ");
                 }
 
                 ForegroundColor = ConsoleColor.Green;
